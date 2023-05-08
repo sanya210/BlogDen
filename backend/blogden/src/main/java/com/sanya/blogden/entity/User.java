@@ -1,9 +1,16 @@
 package com.sanya.blogden.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Blob;
+import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="user")
 public class User {
@@ -30,7 +37,7 @@ public class User {
     private String userLastName;
 
     @Column(name = "user_photo")
-    private Blob userPhoto;
+    private String userPhoto;
 
     @Column(name = "user_desc")
     private String userDesc;
@@ -38,6 +45,10 @@ public class User {
     @Column(name = "user_occupation")
     private String userOccupation;
 
+    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
+    private List<Follow> followers;
 
+    @OneToMany(mappedBy = "followee", cascade = CascadeType.ALL)
+    private List<Follow> following;
 
 }

@@ -12,7 +12,17 @@ import lombok.NoArgsConstructor;
 @Table(name = "follow")
 public class Follow{
 
-    @EmbeddedId
-    private FollowID id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "follow_id")
+    private int followId;
+
+    @ManyToOne
+    @JoinColumn(name = "follower_id")
+    private User follower;
+
+    @ManyToOne
+    @JoinColumn(name = "followee_id")
+    private User followee;
 
 }
