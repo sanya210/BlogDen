@@ -11,7 +11,11 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="post_id")
     private int postId;
-
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
+    private User user;
+    @Column(name = "post_category")
+    private String postCategory;
     @Column(name = "post_title")
     private String postTitle;
 

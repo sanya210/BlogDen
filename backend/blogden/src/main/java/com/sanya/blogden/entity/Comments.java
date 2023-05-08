@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static jakarta.persistence.CascadeType.*;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -19,12 +21,12 @@ public class Comments {
     @Column(name="comment_desc")
     private String commentDesc;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "post_id")
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name= "post_id", referencedColumnName = "post_id")
     private Post post;
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "user_details_id")
-    private UserDetails userDetails;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "user_id",referencedColumnName = "user_id")
+    private User user;
 
 }

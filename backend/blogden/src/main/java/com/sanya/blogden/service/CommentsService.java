@@ -7,5 +7,12 @@ import java.util.List;
 public interface CommentsService {
     List<Comments> findAll();
 
-    Comments
+    Comments findById(int commentsId);
+
+    Comments save(Comments comment);
+
+    void deleteById(int commentsId);
+
+    Comments findByPostId(int postId);
+
 }
