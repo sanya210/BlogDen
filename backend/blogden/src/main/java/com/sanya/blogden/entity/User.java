@@ -1,5 +1,6 @@
 package com.sanya.blogden.entity;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Blob;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -22,7 +24,7 @@ public class User {
     @Column(name="user_role")
     private String userRole;
 
-    @Column(name = "user_email")
+    @Column(name = "user_email",updatable = false)
     private String userEmail;
     @Column(name="user_name")
     private String userName;
@@ -44,11 +46,26 @@ public class User {
 
     @Column(name = "user_occupation")
     private String userOccupation;
-
-    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
-    private List<Follow> followers;
-
-    @OneToMany(mappedBy = "followee", cascade = CascadeType.ALL)
-    private List<Follow> following;
+//
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
+//    private List<Follow> followers;
+//
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "followee", cascade = CascadeType.ALL)
+//    private List<Follow> following;
 
 }
+//    @ManyToMany
+//    @JoinTable(
+//            name = "follow",
+//            joinColumns = @JoinColumn(name = "follower_id", referencedColumnName = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "followee_id", referencedColumnName = "user_id"))
+//    Set<User> followerSet;
+
+//    @ManyToMany
+//    @JoinTable(
+//            name = "following",
+//            joinColumns = @JoinColumn(name = "followee_id", referencedColumnName = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "follower_id", referencedColumnName = "user_id"))
+//    Set<User> followeeSet;

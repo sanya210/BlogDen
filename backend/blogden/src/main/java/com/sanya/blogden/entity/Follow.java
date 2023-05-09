@@ -1,5 +1,8 @@
 package com.sanya.blogden.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,10 +21,12 @@ public class Follow{
     private int followId;
 
     @ManyToOne
+//    @JsonManagedReference
     @JoinColumn(name = "follower_id")
     private User follower;
 
     @ManyToOne
+//    @JsonManagedReference
     @JoinColumn(name = "followee_id")
     private User followee;
 

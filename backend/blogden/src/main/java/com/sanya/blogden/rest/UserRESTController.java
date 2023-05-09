@@ -3,6 +3,8 @@ package com.sanya.blogden.rest;
 import com.sanya.blogden.entity.User;
 import com.sanya.blogden.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,35 +20,50 @@ public class UserRESTController {
         this.userService = userService;
     }
 
-    @GetMapping("")
-    public List<User> findAll(){
-        return userService.findAll();
+    @GetMapping("getAll")
+    public ResponseEntity<List<User>> findAll(){
+        List<User> users = userService.findAll();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{userId}")
-    public Optional<User> getUser(@PathVariable int userId){
+    public ResponseEntity<User> getUser(@PathVariable int userId){
 
         Optional<User> user = userService.findById(userId);
 
-        if(user == null){
-            throw new RuntimeException("User not found - "+ userId);
+        if(user.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return user;
+        return ResponseEntity.ok(user.get());
     }
 
 
     @PostMapping("/add")
-    public User addUser(@RequestBody User user){
+    public ResponseEntity<User> addUser(@RequestBody User user){
         user.setUserId(0);
 
-        return  userService.save(user);
+        User savedUser = userService.save(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
     @PutMapping("/edit")
-    public User updateUser(@RequestBody User user){
-        User user = userService.save(user);
+    public ResponseEntity<User> updateUser(@RequestBody User user){
 
-        return user;
+        User updatedUser = userService.save(user);
+        return ResponseEntity.ok(updatedUser);
+    }
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<String> deleteUser(@PathVariable int userId){
+
+        Optional<User> user = userService.findById(userId);
+
+        if(user.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        userService.deleteById(userId);
+
+        return ResponseEntity.ok("Deleted user id - " + userId);
     }
 
 }
