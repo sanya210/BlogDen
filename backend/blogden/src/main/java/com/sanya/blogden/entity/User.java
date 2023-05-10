@@ -1,32 +1,42 @@
 package com.sanya.blogden.entity;
 
 import com.fasterxml.jackson.annotation.*;
+import com.sanya.blogden.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.sql.Blob;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name="user")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
+    @Column(name = "user_id")
     private int userId;
 
-    @Column(name="user_role")
-    private String userRole;
+    @ElementCollection(targetClass = Role.class)
+    @Enumerated(EnumType.STRING)
+    private Role roles;
 
-    @Column(name = "user_email",updatable = false)
+    @OneToMany(mappedBy = "user")
+    private List<Token> tokens;
+
+    @Column(name = "user_email", updatable = false)
     private String userEmail;
-    @Column(name="user_name")
+    @Column(name = "user_name")
     private String userName;
 
     @Column(name = "user_password")
@@ -46,6 +56,42 @@ public class User {
 
     @Column(name = "user_occupation")
     private String userOccupation;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return userPassword;
+    }
+
+    @Override
+    public String getUsername() {
+        return userEmail;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+}
 //
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
@@ -55,7 +101,7 @@ public class User {
 //    @OneToMany(mappedBy = "followee", cascade = CascadeType.ALL)
 //    private List<Follow> following;
 
-}
+
 //    @ManyToMany
 //    @JoinTable(
 //            name = "follow",
