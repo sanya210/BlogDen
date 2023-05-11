@@ -30,30 +30,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User save(User user) {
-//        System.out.println(!user.getUserEmail().isEmpty()+user.getUserEmail());
-//        if(!user.getUserEmail().isEmpty()){
-//            Optional<User> existingUserOptional = userRepository.findById(user.getUserId());
-//
-//            if(existingUserOptional.isPresent()){
-//                User existingUser = existingUserOptional.get();
-//                existingUser.setUserRole(user.getUserRole());
-//                //existingUser.setUserEmail(user.getUserEmail());
-//                existingUser.setUserName(user.getUserName());
-//                existingUser.setUserPassword(user.getUserPassword());
-//                existingUser.setUserFirstName(user.getUserFirstName());
-//                existingUser.setUserLastName(user.getUserLastName());
-//                existingUser.setUserPhoto(user.getUserPhoto());
-//                existingUser.setUserDesc(user.getUserDesc());
-//                existingUser.setUserOccupation(user.getUserOccupation());
-//
-//                return userRepository.save(existingUser);
-//            }
-//
-//            throw new IllegalArgumentException("User not found");
-//        }
-//        else{
-//            return userRepository.save(user);
-//        }
+
         return userRepository.save(user);
     }
 

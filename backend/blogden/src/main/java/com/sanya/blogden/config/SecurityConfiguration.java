@@ -40,10 +40,10 @@ public class SecurityConfiguration {
                 .permitAll()
 
 
-                .requestMatchers("/user/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
-                .requestMatchers("/comments/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
-                .requestMatchers("/post/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
-                .requestMatchers("/follow/**").hasAnyRole(Role.ADMIN.name(), Role.USER.name())
+//                .requestMatchers("/user/**")
+//                .equals("/comments/**")
+//                .equals("/post/**")
+//                .equals("/follow/**")
 
 
                 .anyRequest()
@@ -55,7 +55,7 @@ public class SecurityConfiguration {
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .logout()
-                .logoutUrl("/api/v1/auth/logout")
+                .logoutUrl("/api/auth/logout")
                 .addLogoutHandler(logoutHandler)
                 .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
         ;

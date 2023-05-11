@@ -7,8 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -24,16 +24,12 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private int userId;
 
-    @Enumerated(EnumType.STRING)
-    private Role roles;
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
     @Column(name = "user_email", updatable = false)
-    private String userEmail;
-    @Column(name = "user_name")
-    private String userName;
+    private String email;
 
     @Column(name = "user_password")
     private String userPassword;
@@ -50,9 +46,12 @@ public class User implements UserDetails {
     @Column(name = "user_desc")
     private String userDesc;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override
@@ -62,7 +61,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return userEmail;
+        return email;
     }
 
     @Override

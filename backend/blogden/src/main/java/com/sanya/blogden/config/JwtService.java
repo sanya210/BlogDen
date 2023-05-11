@@ -1,5 +1,6 @@
 package com.sanya.blogden.config;
 
+import com.sanya.blogden.entity.User;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -18,11 +19,10 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-//    @Value("${application.security.jwt.secret-key}")
+
     private String secretKey="5367566B59703273357638792F423F4528482B4D6251655468576D5A71347436";
-//    @Value("${application.security.jwt.expiration}")
+
     private long jwtExpiration= Long.parseLong("86400000");
-//    @Value("${application.security.jwt.refresh-token.expiration}")
     private long refreshExpiration= Long.parseLong("604800000");
 
     public String extractUsername(String token) {
@@ -35,6 +35,7 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
+
         return generateToken(new HashMap<>(), userDetails);
     }
 
@@ -42,14 +43,14 @@ public class JwtService {
             Map<String, Object> extraClaims,
             UserDetails userDetails
     ) {
-        return buildToken(extraClaims, userDetails, jwtExpiration);
+        return buildToken(extraClaims,userDetails, jwtExpiration);
     }
 
-    public String generateRefreshToken(
-            UserDetails userDetails
-    ) {
-        return buildToken(new HashMap<>(), userDetails, refreshExpiration);
-    }
+//    public String generateRefreshToken(
+//            UserDetails userDetails
+//    ) {
+//        return buildToken(new HashMap<>(),userDetails, refreshExpiration);
+//    }
 
     private String buildToken(
             Map<String, Object> extraClaims,

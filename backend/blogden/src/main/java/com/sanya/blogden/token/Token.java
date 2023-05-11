@@ -1,5 +1,6 @@
 package com.sanya.blogden.token;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -36,7 +37,8 @@ public class Token {
 
     public boolean expired;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
+    @ManyToOne //(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public User user;
 }
