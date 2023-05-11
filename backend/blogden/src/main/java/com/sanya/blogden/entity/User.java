@@ -1,6 +1,5 @@
 package com.sanya.blogden.entity;
 
-import com.fasterxml.jackson.annotation.*;
 import com.sanya.blogden.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,10 +9,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.sql.Blob;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Builder
@@ -27,7 +24,6 @@ public class User implements UserDetails {
     @Column(name = "user_id")
     private int userId;
 
-    @ElementCollection(targetClass = Role.class)
     @Enumerated(EnumType.STRING)
     private Role roles;
 
@@ -53,9 +49,6 @@ public class User implements UserDetails {
 
     @Column(name = "user_desc")
     private String userDesc;
-
-    @Column(name = "user_occupation")
-    private String userOccupation;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

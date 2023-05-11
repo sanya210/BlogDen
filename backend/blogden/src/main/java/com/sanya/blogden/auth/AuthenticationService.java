@@ -1,44 +1,46 @@
 package com.sanya.blogden.auth;
 
-import com.sanya.blogden.dao.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sanya.blogden.token.TokenType;
-import com.sanya.blogden.token.TokenRepository;
 import com.sanya.blogden.config.JwtService;
+import com.sanya.blogden.dao.UserRepository;
+import com.sanya.blogden.entity.User;
 import com.sanya.blogden.token.Token;
+import com.sanya.blogden.token.TokenRepository;
+import com.sanya.blogden.token.TokenType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import com.sanya.blogden.entity.User;
-import com.sanya.blogden.entity.Role;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-import static org.springframework.security.core.userdetails.User.*;
-
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
+    @Autowired
     private final UserRepository userRepository;
+    @Autowired
     private final TokenRepository tokenRepository;
+    @Autowired
     private final PasswordEncoder passwordEncoder;
+    @Autowired
     private final JwtService jwtService;
+    @Autowired
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
 
         var user = User.builder()
-                .userFirstName(request.getFirstname())
-                .userLastName(request.getLastname())
-                .userEmail(request.getEmail())
-                .userPassword(passwordEncoder.encode(request.getPassword()))
-                .roles(request.getRole())
+                .userFirstName(request.getUserFirstName())
+                .userLastName(request.getUserLastName())
+                .userEmail(request.getUserEmail())
+                .userPassword(passwordEncoder.encode(request.getUserPassword()))
+                .roles(request.getRoles())
                 .build();
         var savedUser = userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
@@ -53,11 +55,11 @@ public class AuthenticationService {
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
+                        request.getUserEmail(),
+                        request.getUserPassword()
                 )
         );
-        var user = userRepository.findByEmail(request.getEmail())
+        var user = userRepository.findByEmail(request.getUserEmail())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         var refreshToken = jwtService.generateRefreshToken(user);
