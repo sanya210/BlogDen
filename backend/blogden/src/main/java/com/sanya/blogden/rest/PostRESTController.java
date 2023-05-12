@@ -3,6 +3,7 @@ package com.sanya.blogden.rest;
 import com.sanya.blogden.entity.Post;
 import com.sanya.blogden.entity.User;
 import com.sanya.blogden.service.PostService;
+import com.sanya.blogden.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +15,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/post")
 public class PostRESTController {
+    @Autowired
     private PostService postService;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public PostRESTController(PostService postService) {
@@ -41,7 +45,8 @@ public class PostRESTController {
     @PostMapping("/add")
     public ResponseEntity<Post> addPost(@RequestBody Post post){
         post.setPostId(0);
-
+        Optional<User> user = userService.findById(post.getUser().getUserId());
+        post.setUser(user.get());
         Post savedPost = postService.save(post);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);
     }

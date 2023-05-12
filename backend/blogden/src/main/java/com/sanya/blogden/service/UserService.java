@@ -1,7 +1,5 @@
 package com.sanya.blogden.service;
 
-import com.sanya.blogden.dao.UserRepository;
-import com.sanya.blogden.entity.Post;
 import com.sanya.blogden.entity.User;
 import org.springframework.stereotype.Service;
 
