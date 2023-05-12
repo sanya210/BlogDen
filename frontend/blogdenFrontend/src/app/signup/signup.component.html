@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <h2 class="text-center mb-4">Signup</h2>
+        <form #signupForm="ngForm" (ngSubmit)="signup()">
+            <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter email" ngModel name="email" required email #email="ngModel">
+            <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Enter password" ngModel name="password" required minlength="5" #password="ngModel">
+            <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a password with min length 5</span>
+          </div>
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required ngModel name="firstName">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required ngModel name="lastName">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" placeholder="Enter something about yourself" required ngModel name="description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="profilePic">Add Profile Pic</label>
+            <div class="input-group">
+              <input type="url" class="form-control" id="profilePic" placeholder="Enter image URL" required ngModel name="profilePic" #profilePic="ngModel">
+              <span class="help-block" *ngIf="!profilePic.valid && profilePic.touched">Please enter an image url as profile pic</span>
+              <!-- <div class="input-group-append">
+                <span class="input-group-text" id="profilePicAddon"><i class="fas fa-image"></i></span>
+              </div> -->
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block" [disabled]="!signupForm.valid">Signup</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
