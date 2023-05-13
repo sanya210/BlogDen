@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div class="container">
+    
+    <!-- <button class="btn btn-primary" (click)="openForm()"><h2>Write Your Own Articles</h2></button> -->
+  
+    <div class="article-form">
+      <h3>Add Article</h3>
+      <form (ngSubmit)="submitArticle()">
+        <div class="form-group">
+          <label for="title">Post Title</label>
+          <input type="text" class="form-control" id="title" [(ngModel)]="article.title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="category">Post Category</label>
+          <select class="form-control" id="category" [(ngModel)]="article.category" name="category" required>
+            <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="description">Post Description</label>
+          <textarea class="form-control" id="description" [(ngModel)]="article.description" name="description" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  
