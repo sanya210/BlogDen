@@ -1,6 +1,5 @@
 package com.sanya.blogden.config;
 
-import com.sanya.blogden.entity.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

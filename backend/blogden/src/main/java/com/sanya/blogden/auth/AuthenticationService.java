@@ -1,6 +1,5 @@
 package com.sanya.blogden.auth;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sanya.blogden.config.JwtService;
 import com.sanya.blogden.dao.UserRepository;
 import com.sanya.blogden.entity.Role;
@@ -8,17 +7,12 @@ import com.sanya.blogden.entity.User;
 import com.sanya.blogden.token.Token;
 import com.sanya.blogden.token.TokenRepository;
 import com.sanya.blogden.token.TokenType;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor

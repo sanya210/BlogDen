@@ -14,6 +14,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/post")
+@CrossOrigin(origins = "*")
+
 public class PostRESTController {
     @Autowired
     private PostService postService;
@@ -44,8 +46,9 @@ public class PostRESTController {
 
     @PostMapping("/add")
     public ResponseEntity<Post> addPost(@RequestBody Post post){
+        System.out.println(post);
         post.setPostId(0);
-        Optional<User> user = userService.findById(post.getUser().getUserId());
+        Optional<User> user = userService.findByEmail(post.getUser().getEmail());
         post.setUser(user.get());
         Post savedPost = postService.save(post);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedPost);

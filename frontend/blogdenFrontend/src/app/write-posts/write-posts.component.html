@@ -5,23 +5,26 @@
   
     <div class="article-form">
       <h3>Add Article</h3>
-      <form (ngSubmit)="submitArticle()">
+      <form #postForm="ngForm" (ngSubmit)="submitArticle()">
         <div class="form-group">
           <label for="title">Post Title</label>
-          <input type="text" class="form-control" id="title" [(ngModel)]="article.title" name="title" required>
+          <input type="text" class="form-control" id="title" [(ngModel)]="title" name="title" required #titleRef="ngModel">
+          <span class="help-block" *ngIf="!titleRef.valid && titleRef.touched">Please enter a valid title!</span>
         </div>
         <div class="form-group">
           <label for="category">Post Category</label>
-          <select class="form-control" id="category" [(ngModel)]="article.category" name="category" required>
+          <select class="form-control" id="category" [(ngModel)]="category" name="category" required #categoryRef="ngModel">
             <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
           </select>
+          <span class="help-block" *ngIf="!categoryRef.valid && categoryRef.touched">Please select a valid category!</span>
         </div>
         <div class="form-group">
           <label for="description">Post Description</label>
-          <textarea class="form-control" id="description" [(ngModel)]="article.description" name="description" required></textarea>
+          <textarea class="form-control" id="description" [(ngModel)]="description" name="description" required #descriptionRef="ngModel"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!postForm.valid">Submit</button>
       </form>
+      <div style="color : red" *ngIf='error'>{{error}}</div>
     </div>
   </div>
   
