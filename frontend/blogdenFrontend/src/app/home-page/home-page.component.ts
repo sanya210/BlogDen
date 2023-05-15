@@ -1,10 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Article } from '../articles/articles.model';
+import { ArticlesService } from '../articles/articles.service';
+import { DataStorageService } from '../data-storage.service';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent {
+export class HomePageComponent implements OnInit{
+    constructor(private dataStorageService: DataStorageService,private router:Router){}
+  
+    articles: Article[];
 
-}
+    ngOnInit(): void {
+      this.dataStorageService.getPostsByUser().subscribe((posts:Article[])=>{
+        this.articles = posts;
+        console.log(this.articles);
+        
+      })
+    }
+    showFullContent(index:number){
+      // this.articlesService.getArticleByIndex(index);
+       this.router.navigate(['/articles',index+1]);
+     }
+   }
+
+

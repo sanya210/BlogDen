@@ -13,6 +13,9 @@ import { WritePostsComponent } from './write-posts/write-posts.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { ArticlesComponent } from './articles/articles.component';
+import { DisplayPostsComponent } from './articles/display-posts/display-posts.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +25,10 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     HeaderComponent,
     HomePageComponent,
     WritePostsComponent,
-    AuthComponent
-  ],
+    AuthComponent,
+    ArticlesComponent,
+  DisplayPostsComponent,
+  CommentComponent  ],
   imports: [
     BrowserModule,
     FormsModule,

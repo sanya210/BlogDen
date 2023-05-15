@@ -1,7 +1,11 @@
 .container {
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 50px;
+}
+
+#title{
+ margin-right: 10px;
 }
 
 .btn-primary {
@@ -20,7 +24,7 @@ input.ng-invalid.ng-touched{
 
 .article-form {
   margin-top: 20px;
-  padding: 20px;
+  padding: 20px 100px;
   background-color: #f7f7f7;
   border-radius: 5px;
 }
@@ -40,7 +44,7 @@ label {
 
 input[type="text"],
 textarea {
-  width: 100%;
+  width: 90%;
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ddd;
@@ -48,7 +52,7 @@ textarea {
 }
 
 select {
-  width: 100%;
+  width: 93%;
   padding: 10px;
   font-size: 14px;
   border: 1px solid #ddd;

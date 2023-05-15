@@ -1,0 +1,28 @@
+.card {
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center; /* Center the title horizontally */
+  }
+  
+  .card-subtitle {
+    font-size: 1.2rem;
+    font-weight: lighter;
+    color: #888;
+    text-align: center; /* Center the category horizontally */
+  }
+  
+  .post-content {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin: 2rem;
+  }
+  
+  .container {
+    margin-top: 2rem;
+  }
+  
