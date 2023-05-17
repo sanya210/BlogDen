@@ -15,7 +15,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/api/comments")
+@CrossOrigin(origins = "*")
+
 public class CommentsRESTController {
 
     @Autowired
@@ -45,11 +47,18 @@ public class CommentsRESTController {
         }
         return ResponseEntity.ok(comment.get());
     }
+    @GetMapping("/byPostId/{postId}")
+    public List<Comments> getAllPostComments(@PathVariable int postId){
+        return commentsService.findByPostId(postId);
+    }
     @PostMapping("/add")
     public ResponseEntity<Comments> addComment(@RequestBody Comments comment){
         comment.setCommentsId(0);
-        Optional<User> user = userService.findById(comment.getUser().getUserId());
+        Optional<User> user = userService.findByEmail(comment.getUser().getEmail());
+//        Optional<User> user = userService.findById(comment.getUser().getUserId());
         comment.setUser(user.get());
+
+        System.out.println(comment.getPost().getPostId());
 
         Optional<Post> post = postService.findById(comment.getPost().getPostId());
         comment.setPost(post.get());

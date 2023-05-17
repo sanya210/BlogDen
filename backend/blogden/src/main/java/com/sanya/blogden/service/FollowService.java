@@ -14,4 +14,8 @@ public interface FollowService {
 
     List<Follow> findByUserid(int userId);
 
+    List<Integer> followers(int followeeId);
+
+    List<Integer> following(int followerId);
+
 }

@@ -14,6 +14,7 @@ public interface CommentsService {
 
     Comments save(Comments comment);
 
+    List<Comments> findByPostId(int id);
     void deleteById(int commentsId);
 
 }

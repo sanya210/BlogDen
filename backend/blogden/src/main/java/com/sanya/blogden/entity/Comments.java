@@ -1,9 +1,12 @@
 package com.sanya.blogden.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Timestamp;
 
 import static jakarta.persistence.CascadeType.*;
 
@@ -21,11 +24,15 @@ public class Comments {
     @Column(name="comment_desc")
     private String commentDesc;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @Column(name="created_at")
+    private Timestamp createdAt;
+
+    @JsonBackReference
+    @ManyToOne
     @JoinColumn(name= "post_id", referencedColumnName = "post_id")
     private Post post;
 
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "user_id",referencedColumnName = "user_id")
     private User user;
 

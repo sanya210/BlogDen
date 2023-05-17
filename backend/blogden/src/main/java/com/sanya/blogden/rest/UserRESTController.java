@@ -11,7 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
+@CrossOrigin(origins = "*")
+
 public class UserRESTController {
     private UserService userService;
 
@@ -36,7 +38,12 @@ public class UserRESTController {
         }
         return ResponseEntity.ok(user.get());
     }
+    @PostMapping("/byUserEmail")
+    public ResponseEntity<User> getUserByEmail(@RequestBody String email){
+        Optional<User> user = userService.findByEmail(email);
 
+        return ResponseEntity.ok(user.get());
+    }
 
     @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody User user){

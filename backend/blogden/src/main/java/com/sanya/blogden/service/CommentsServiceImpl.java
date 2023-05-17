@@ -33,6 +33,11 @@ public class CommentsServiceImpl implements CommentsService{
     }
 
     @Override
+    public List<Comments> findByPostId(int id) {
+        return commentsRepository.findByPostId(id);
+    }
+
+    @Override
     public void deleteById(int commentsId) {
         commentsRepository.deleteById(commentsId);
     }

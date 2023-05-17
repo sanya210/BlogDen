@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/post")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/post")
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class PostRESTController {
     @Autowired
@@ -36,17 +36,26 @@ public class PostRESTController {
     @GetMapping("/{postId}")
     public ResponseEntity<Post> getPost(@PathVariable int postId){
 
+        //System.out.println(postId);
         Optional<Post> post = postService.findById(postId);
-
+        //System.out.println(post.get());
         if(post == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok(post.get());
     }
+    @PostMapping("/byUser")
+    public List<Post> getPost(@RequestBody String email){
+
+        System.out.println(email);
+        Optional<User> user = userService.findByEmail(email);
+        //System.out.println(post.get());
+        return postService.findByUserId(user.get().getUserId());
+    }
 
     @PostMapping("/add")
     public ResponseEntity<Post> addPost(@RequestBody Post post){
-        System.out.println(post);
+        //System.out.println(post);
         post.setPostId(0);
         Optional<User> user = userService.findByEmail(post.getUser().getEmail());
         post.setUser(user.get());

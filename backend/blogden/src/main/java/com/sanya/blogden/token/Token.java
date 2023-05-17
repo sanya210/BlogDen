@@ -1,15 +1,7 @@
 package com.sanya.blogden.token;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +30,7 @@ public class Token {
     public boolean expired;
 
     @JsonBackReference
-    @ManyToOne //(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL) //(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     public User user;
 }

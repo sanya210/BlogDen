@@ -20,14 +20,14 @@ public class Follow{
     @Column(name = "follow_id")
     private int followId;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
 //    @JsonManagedReference
-    @JoinColumn(name = "follower_id")
+    @JoinColumn(name = "follower_id",referencedColumnName="user_id")
     private User follower;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
 //    @JsonManagedReference
-    @JoinColumn(name = "followee_id")
+    @JoinColumn(name = "followee_id", referencedColumnName = "user_id")
     private User followee;
 
 }

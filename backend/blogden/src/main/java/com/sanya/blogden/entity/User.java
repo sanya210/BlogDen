@@ -1,5 +1,6 @@
 package com.sanya.blogden.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sanya.blogden.token.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class User implements UserDetails {
     private int userId;
 
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Token> tokens;
 
     @Column(name = "user_email", updatable = false)
@@ -48,6 +49,18 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Comments> commentsList;
+
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
+//    private List<Follow> followers;
+//
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "followee", cascade = CascadeType.ALL)
+//    private List<Follow> following;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -83,15 +96,11 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }
 //
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
-//    private List<Follow> followers;
-//
-//    @JsonBackReference
-//    @OneToMany(mappedBy = "followee", cascade = CascadeType.ALL)
-//    private List<Follow> following;
+
 
 
 //    @ManyToMany
