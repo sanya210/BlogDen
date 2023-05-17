@@ -14,4 +14,21 @@
       </div>
     </div>
   </div>
+
+  <!-- <button class="btn btn-primary" (click)=addComment()>
+    Add Comment
+  </button> -->
+</div>
+
+<app-comment></app-comment>
+<div class="row-8">
+  <div class="col-md-4" *ngFor="let comment of article.comments;">
+    <div class="card mb-4">
+      <div class="card-body">
+      <p class="card-content">{{ comment.commentDesc }}</p>
+      <h5 class="author-name">Author: {{ comment.user.userFirstName}} {{ comment.user.userLastName }}</h5>
+      <h5 class="author-email">Author Email: {{comment.user.email}}</h5>
+      </div>
+    </div>
+  </div>
 </div>

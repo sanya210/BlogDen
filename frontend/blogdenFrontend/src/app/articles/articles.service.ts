@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from './articles.model';
+import { DataStorageService } from '../data-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,11 @@ import { Article } from './articles.model';
 export class ArticlesService {
   private baseUrl = 'http://localhost:8080/api/';
 
-	constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
+	constructor(private route: ActivatedRoute, private router: Router, private dataStorageService:DataStorageService) { }
   private index:Number;
+
+  ArticleChanged = new Subject<Article>();
+  article:Article;
 
   private articles: Article[] = [
     // new Article('My First Article',
@@ -33,11 +37,16 @@ export class ArticlesService {
     // new Date())
   ];
 
+  setArticle(article: Article) {
+    this.article = article;
+    this.ArticleChanged.next(this.article);//emitting an event when recipes changed and this will be subscribed by recipe-list
+  }
+
   getArticles(){
     return this.articles.slice();
   }
   getArticleByIndex(index:number){
-    return this.articles[index];
+    return this.article ;
   }
  
 }

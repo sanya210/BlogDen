@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataStorageService } from '../data-storage.service';
 import { Article } from './articles.model';
-import { ArticlesService } from './articles.service';
 
 @Component({
   selector: 'app-articles',
@@ -13,7 +12,7 @@ export class ArticlesComponent implements OnInit{
  // showFullContent = false;
  articles: Article[];
   
-  constructor(private articlesService: ArticlesService, private router: Router,
+  constructor(private router: Router,
     private dataStorageService: DataStorageService){}
 
  // articles: Articles= this.articlesService.articles;
@@ -22,12 +21,14 @@ export class ArticlesComponent implements OnInit{
     //this.articles = this.articlesService.getArticles();
     this.dataStorageService.getAllPosts().subscribe((posts:Article[])=>{
       this.articles=posts;
+      console.log(posts);
+      
     });
     // })
   }
 
   showFullContent(index:number){
    // this.articlesService.getArticleByIndex(index);
-    this.router.navigate(['/articles',index+1]);
+    this.router.navigate(['/articles',index]);
   }
 }

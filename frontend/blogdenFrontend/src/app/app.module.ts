@@ -16,6 +16,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { ArticlesComponent } from './articles/articles.component';
 import { DisplayPostsComponent } from './articles/display-posts/display-posts.component';
 import { CommentComponent } from './comment/comment.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { CommentComponent } from './comment/comment.component';
     AuthComponent,
     ArticlesComponent,
   DisplayPostsComponent,
-  CommentComponent  ],
+  CommentComponent,
+  UserProfileComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,

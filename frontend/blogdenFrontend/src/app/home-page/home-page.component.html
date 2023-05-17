@@ -1,20 +1,15 @@
-<app-header></app-header>
+<!-- <app-header></app-header>
 <div class="row-8">
-    <div class="col-md-4" *ngFor="let article of articles; let i=index">
+    <div class="col-md-4" *ngFor="let article of articles;">
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-header">{{ article.postCategory }}</h5>
           <h2 class="card-title">{{ article.postTitle }}</h2>
-          <!-- <div class="card-text preview">
-            {{ article.preview }}
-          </div> -->
-          <!-- <div class="card-text full-content" [hidden]="showFullContent">
-            {{ article.content }}
-          </div> -->
-          <button class="btn btn-primary" (click)=showFullContent(i)>
+          <button class="btn btn-primary" (click)=showFullContent(article.postId)>
             Read full article
           </button>
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <app-articles></app-articles>

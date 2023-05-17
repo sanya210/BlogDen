@@ -1,11 +1,22 @@
 <app-header></app-header>
+<div class="user-profile">
+    <div class="user-photo">
+      <img [src]="user.userPhoto" alt="User Photo">
+    </div>
+    <div class="user-details">
+        <div class="user-info">
+            <div class="user-name">{{ user.userFirstName }} {{ user.userLastName }}</div>
+            <div class="user-email">{{ user.email }}</div>
+            <div class="user-description">{{ user.userDesc }}</div>
+        </div>      
+    </div>
+</div>
 <div class="row-8">
     <div class="col-md-4" *ngFor="let article of articles;">
       <div class="card mb-4">
         <div class="card-body">
           <h5 class="card-header">{{ article.postCategory }}</h5>
           <h2 class="card-title">{{ article.postTitle }}</h2>
-          <h5 class="author-name">Author: {{ article.authorName}}</h5>
           <!-- <div class="card-text preview">
             {{ article.preview }}
           </div> -->
@@ -19,4 +30,3 @@
       </div>
     </div>
   </div>
-  

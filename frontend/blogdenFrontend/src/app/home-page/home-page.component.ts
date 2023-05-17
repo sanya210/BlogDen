@@ -23,7 +23,7 @@ export class HomePageComponent implements OnInit{
     }
     showFullContent(index:number){
       // this.articlesService.getArticleByIndex(index);
-       this.router.navigate(['/articles',index+1]);
+       this.router.navigate(['/articles',index]);
      }
    }
 

@@ -19,7 +19,7 @@ export class WritePostsComponent {
   description: String;
 	error: string = '';
 
-  categories = ['Technology', 'Travel', 'Fashion', 'Food', 'Sports', 'Health'];
+  categories = ['Technology', 'Travel', 'Fashion', 'Food', 'Sports', 'Health','Education','Astronomy','Astrology','Nature','Hobbies'];
 
   openForm() {
     this.isFormOpen = true;
@@ -42,10 +42,10 @@ export class WritePostsComponent {
         postedOn: new Date(),
         modifiedOn: new Date()
       };
-      console.log(request);
+     // console.log(request);
       
       this.dataStorageService.createPost(request).subscribe((result) => {
-        console.log(result);
+        //console.log(result);
         },() => {
           this.error = 'Either invalid details or something went wrong';
         });
@@ -53,10 +53,11 @@ export class WritePostsComponent {
 			this.error = 'Invalid Credentials';
 		}
    
-    console.log(this.form);
+   // console.log(this.form);
     // Reset the form fields
-
+    this.form.reset();
+    this.router.navigate(['/home-page']);
     // Close the form after submission
-    this.isFormOpen = false;
+   // this.isFormOpen = false;
   }
 }

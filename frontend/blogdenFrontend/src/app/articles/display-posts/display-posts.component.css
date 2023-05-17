@@ -25,4 +25,10 @@
   .container {
     margin-top: 2rem;
   }
-  
+  .btn-primary {
+    background-color: #0e7866;
+    border-color: #0e7866;
+    font-size: 1rem;
+    padding: 0.5rem 1.5rem;
+    transition: background-color 0.3s ease;
+  }

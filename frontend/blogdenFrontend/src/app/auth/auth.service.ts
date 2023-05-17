@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Request } from '../request.model';
+import { SignupRequest } from '../signup/signup-request.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Injectable({
@@ -24,9 +25,15 @@ export class AuthService {
 		}));
 	}
 
-	signup(request: Request): Observable<any> {
-		return this.http.post<any>(this.baseUrl + 'signup', request, {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' as 'json'}).pipe(map((resp) => {                                                         
-			return resp;
+	signup(request: SignupRequest): Observable<any> {
+		return this.http.post<any>(this.baseUrl + 'register', request, {headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' as 'json'}).pipe(map((resp) => {                                                         
+			const response = JSON.parse(resp);
+			sessionStorage.setItem('user', request.email);
+			console.log(resp);
+			console.log(response);
+			
+			sessionStorage.setItem('token', response.access_token);
+			return response;
 		}));
 	}
 
@@ -42,7 +49,9 @@ export class AuthService {
 	isUserSignedin() {
 		return sessionStorage.getItem('token') !== null;
 	}
-
+	isUserSignedUp(){
+		return sessionStorage.getItem('token') !== null;
+	}
 	getSignedinUser() {
 		return sessionStorage.getItem('user') as string;
 	}

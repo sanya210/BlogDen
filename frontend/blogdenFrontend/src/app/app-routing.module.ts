@@ -6,6 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DisplayPostsComponent } from './articles/display-posts/display-posts.component';
 import { WritePostsComponent } from './write-posts/write-posts.component';
+import { CommentComponent } from './comment/comment.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,7 +17,10 @@ const routes: Routes = [
   { path: 'home-page', component: HomePageComponent},
   { path: 'write-posts', component: WritePostsComponent},
   { path: 'articles', component: ArticlesComponent},
-  { path: 'articles/:id', component: DisplayPostsComponent}
+  { path: 'articles/:id', component: DisplayPostsComponent},
+  { path: 'comment', component: CommentComponent},
+  { path: 'profile', component: UserProfileComponent}
+
   // Add other routes as needed
 ];
 
