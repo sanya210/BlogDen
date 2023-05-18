@@ -20,13 +20,13 @@
   </button> -->
 </div>
 
-<app-comment></app-comment>
+<app-comment [article]="article"></app-comment>
 <div class="row-8">
   <div class="col-md-4" *ngFor="let comment of article.comments;">
     <div class="card mb-4">
       <div class="card-body">
       <p class="card-content">{{ comment.commentDesc }}</p>
-      <h5 class="author-name">Author: {{ comment.user.userFirstName}} {{ comment.user.userLastName }}</h5>
+      <h5 class="author-name" (click)="getAuthor(comment.user.email)">Author: {{ comment.user.userFirstName}} {{ comment.user.userLastName }}</h5>
       <h5 class="author-email">Author Email: {{comment.user.email}}</h5>
       </div>
     </div>

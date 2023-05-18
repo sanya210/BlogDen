@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DisplayPostsComponent } from './articles/display-posts/display-posts.component';
 import { WritePostsComponent } from './write-posts/write-posts.component';
-import { CommentComponent } from './comment/comment.component';
+import { CommentComponent } from './articles/comment/comment.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
@@ -19,8 +19,8 @@ const routes: Routes = [
   { path: 'articles', component: ArticlesComponent},
   { path: 'articles/:id', component: DisplayPostsComponent},
   { path: 'comment', component: CommentComponent},
-  { path: 'profile', component: UserProfileComponent}
-
+  { path: 'profile', component: UserProfileComponent},
+  { path:'profile/:id', component:UserProfileComponent}
   // Add other routes as needed
 ];
 

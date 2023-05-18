@@ -31,4 +31,7 @@ export class ArticlesComponent implements OnInit{
    // this.articlesService.getArticleByIndex(index);
     this.router.navigate(['/articles',index]);
   }
+  getAuthor(id:number){
+    this.router.navigate(['/profile',id]);
+  }
 }

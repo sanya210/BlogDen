@@ -5,11 +5,23 @@
     </div>
     <div class="user-details">
         <div class="user-info">
-            <div class="user-name">{{ user.userFirstName }} {{ user.userLastName }}</div>
+            <div class="user-name">{{ user.userFirstName }} {{ user.userLastName }} 
+              <button *ngIf="notSelf" (click)="followUnfollow(user.userId)">{{isFollowing ? 'Unfollow':'Follow'}}</button>
+            </div>
             <div class="user-email">{{ user.email }}</div>
             <div class="user-description">{{ user.userDesc }}</div>
         </div>      
     </div>
+    <div class="follow-details">
+      <div class="followers-info">
+        <button class="btn btn-primary">Followers</button>
+        <div class="followers">{{ followersCount }}</div>
+      </div>
+      <div class="following-info">
+        <button class="btn btn-primary">Following</button>
+        <div class="following">{{ followingCount }}</div>
+      </div>
+    </div>  
 </div>
 <div class="row-8">
     <div class="col-md-4" *ngFor="let article of articles;">
@@ -17,12 +29,6 @@
         <div class="card-body">
           <h5 class="card-header">{{ article.postCategory }}</h5>
           <h2 class="card-title">{{ article.postTitle }}</h2>
-          <!-- <div class="card-text preview">
-            {{ article.preview }}
-          </div> -->
-          <!-- <div class="card-text full-content" [hidden]="showFullContent">
-            {{ article.content }}
-          </div> -->
           <button class="btn btn-primary" (click)=showFullContent(article.postId)>
             Read full article
           </button>

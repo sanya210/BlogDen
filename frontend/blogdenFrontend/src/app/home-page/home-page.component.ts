@@ -15,10 +15,14 @@ export class HomePageComponent implements OnInit{
     articles: Article[];
 
     ngOnInit(): void {
-      this.dataStorageService.getPostsByUser().subscribe((posts:Article[])=>{
-        this.articles = posts;
-        console.log(this.articles);
+      // this.dataStorageService.getPostsByUser().subscribe((posts:Article[])=>{
+      //   this.articles = posts;
+      //   console.log(this.articles);
         
+      // })
+
+      this.dataStorageService.getUserByEmail(sessionStorage.getItem('user')).subscribe(resp=>{
+        sessionStorage.setItem('UserId',  resp.userId);
       })
     }
     showFullContent(index:number){

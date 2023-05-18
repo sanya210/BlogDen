@@ -15,7 +15,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { ArticlesComponent } from './articles/articles.component';
 import { DisplayPostsComponent } from './articles/display-posts/display-posts.component';
-import { CommentComponent } from './comment/comment.component';
+import { CommentComponent } from './articles/comment/comment.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({

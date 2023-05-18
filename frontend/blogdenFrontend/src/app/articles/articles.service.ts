@@ -45,7 +45,12 @@ export class ArticlesService {
   getArticles(){
     return this.articles.slice();
   }
-  getArticleByIndex(index:number){
+  getArticleByIndex(id:number){
+    this.dataStorageService.getPostById(id).subscribe((article)=>{
+      this.article=article;
+      // console.log(article);
+      
+    });
     return this.article ;
   }
  

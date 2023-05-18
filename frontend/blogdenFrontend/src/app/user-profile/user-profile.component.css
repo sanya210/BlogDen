@@ -39,7 +39,21 @@
   font-size: 16px;
   color: #888;
 }
-
+.follow-details {
+  display: flex;
+  float: right;
+  align-items: center;
+  justify-content: space-between;
+}
+.followers-info, .following-info{
+  display: flex;
+  flex-direction: column;
+}
+.followers,
+.following {
+  margin-left: 10px;
+  text-align: center;
+}
 /* articles styling */
 .card {
   height: 100%;
@@ -74,8 +88,8 @@
 }
 
 .btn-primary {
-  background-color: #0e7866;
-  border-color: #0e7866;
+  background-color: #f0e76b;
+  border-color: #f0e76b;
   font-size: 1rem;
   padding: 0.5rem 1.5rem;
   transition: background-color 0.3s ease;

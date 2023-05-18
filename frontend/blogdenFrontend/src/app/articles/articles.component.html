@@ -5,7 +5,7 @@
         <div class="card-body">
           <h5 class="card-header">{{ article.postCategory }}</h5>
           <h2 class="card-title">{{ article.postTitle }}</h2>
-          <h5 class="author-name">Author: {{ article.authorName}}</h5>
+          <h5 class="author-name" (click)="getAuthor(article.authorId)">Author: {{ article.authorName}}</h5>
           <!-- <div class="card-text preview">
             {{ article.preview }}
           </div> -->

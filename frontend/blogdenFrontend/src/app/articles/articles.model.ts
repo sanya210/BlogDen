@@ -7,16 +7,19 @@ export class Article{
     public postedOn: Date;
     public modifiedOn: Date;
     public authorName: String;
+    public authorId: number;
     public comments: Comment[];
+
     //public preview: String;
 
-    constructor(postTitle: String, postCategory: String, postContent: String, postedOn: Date, modifiedOn: Date, authorName: String, comments:Comment[]){
+    constructor(postTitle: String, postCategory: String, postContent: String, postedOn: Date, modifiedOn: Date, authorName: String, authorId:number,comments:Comment[]){
         this.postTitle=postTitle;
         this.postCategory=postCategory;
         this.postContent=postContent;
         this.postedOn=postedOn;
         this.modifiedOn=modifiedOn;
         this.authorName=authorName;
+        this.authorId=authorId;
         this.comments=comments;
     }
 }
