@@ -1,19 +1,27 @@
 .card {
-    border: none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  height: 100%;
+  width: 1200px;
+  /* margin: 0 auto; */
+  margin-top: 20px; 
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
   
   .card-title {
     font-size: 2rem;
     font-weight: bold;
     text-align: center; /* Center the title horizontally */
+    font-family: cursive;
+    color: rgb(155, 43, 15);
+    /* font-style: italic; */
   }
   
   .card-subtitle {
     font-size: 1.2rem;
     font-weight: lighter;
     color: #888;
-    text-align: center; /* Center the category horizontally */
+    text-align: center;
+    
   }
   
   .post-content {
@@ -25,10 +33,35 @@
   .container {
     margin-top: 2rem;
   }
-  .btn-primary {
+  .comments{
+    margin-top: 30px;
+    /* justify-content: center;
+    align-items: center;   */
+  }
+  .comments-card {
+    /* justify-content: center;
+    align-items: center; */
+    width: 1200px; 
+    /* margin-top: 30px; */
+    margin:0 auto;
+    height: 100%;
+    border: none;
+    box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  .author-name, .author-email{
+    color: #888;
+  }
+  .card-content{
+    font-size: 1.5rem;
+  }
+  .add-comment{
+    margin-top: 50px;
+  }
+  /* .btn-primary {
     background-color: #0e7866;
     border-color: #0e7866;
     font-size: 1rem;
     padding: 0.5rem 1.5rem;
     transition: background-color 0.3s ease;
-  }
+  } */

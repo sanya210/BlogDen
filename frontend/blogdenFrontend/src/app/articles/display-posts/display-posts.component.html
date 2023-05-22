@@ -1,8 +1,8 @@
 <app-header></app-header>
 
-<div class="container">
-  <div class="row justify-content-center align-items-center">
-    <div class="col-md-8">
+<div class="container" style="max-width: 1231px;">
+  <div class="row">
+    <div class="col">
       <div class="card">
         <div class="card-body text-center">
           <h2 class="card-title">{{ article.postTitle }}</h2>
@@ -15,19 +15,19 @@
     </div>
   </div>
 
-  <!-- <button class="btn btn-primary" (click)=addComment()>
-    Add Comment
-  </button> -->
 </div>
 
-<app-comment [article]="article"></app-comment>
-<div class="row-8">
-  <div class="col-md-4" *ngFor="let comment of article.comments;">
-    <div class="card mb-4">
+<div class="add-comment">
+  <app-comment [article]="article"></app-comment>
+
+</div>
+<div class="row-8 comments">
+  <div class="col" *ngFor="let comment of article.comments;">
+    <div class="comments-card mb-4">
       <div class="card-body">
       <p class="card-content">{{ comment.commentDesc }}</p>
-      <h5 class="author-name" (click)="getAuthor(comment.user.email)">Author: {{ comment.user.userFirstName}} {{ comment.user.userLastName }}</h5>
-      <h5 class="author-email">Author Email: {{comment.user.email}}</h5>
+      <p class="author-name" (click)="getAuthor(comment.user.email)">{{ comment.user.userFirstName}} {{ comment.user.userLastName }}</p>
+      <p class="author-email">{{comment.user.email}}</p>
       </div>
     </div>
   </div>

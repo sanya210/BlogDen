@@ -1,30 +1,23 @@
-.user-profile {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
 
-.user-photo {
-  margin-right: 20px;
+.card {
+  /* justify-content: center; */
+  /* align-items: center; */
+  width: 1200px; 
+  margin: 0 auto; 
+  margin-top: 50px; 
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .user-photo img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  border-radius: 3%;
   object-fit: cover;
 }
 
-.user-details {
-  display: flex;
-}
-
-.user-info {
-  display: flex;
-  flex-direction: column;
-}
-
 .user-name {
+  margin-top: 10px;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -39,23 +32,49 @@
   font-size: 16px;
   color: #888;
 }
+
 .follow-details {
   display: flex;
-  float: right;
-  align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  margin-top: 20px;
+
 }
-.followers-info, .following-info{
+.following-heading{
+  margin-left: 10px;
+}
+.follower-heading{
+  margin-right: 10px;
+}
+.followers-info,
+.following-info {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
+
+
 .followers,
 .following {
-  margin-left: 10px;
-  text-align: center;
+  margin-top: 5px;
+}
+.follow-button{
+  background-color: rgb(201, 214, 84);
+  border-radius: 3px;
+  border: 0cm;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  /* transition: background-color 0.3s ease; */
 }
 /* articles styling */
-.card {
+.articles{
+  margin-top: 30px;
+}
+.articles-card {
+  /* justify-content: center;
+  align-items: center; */
+  width: 1200px; 
+  /* margin-top: 30px; */
+  margin:0 auto;
   height: 100%;
   border: none;
   box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.15);
@@ -74,41 +93,35 @@
   text-transform: uppercase;
   letter-spacing: 0.05rem;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .card-title {
   font-size: 1.8rem;
   margin: 1rem 0;
+  font-style: italic;
+  font-family: cursive;
+  text-align: center;
 }
 
-.card-text {
+/* .card-text {
   font-size: 1.2rem;
   line-height: 1.5;
   color: #555;
-}
+} */
 
 .btn-primary {
-  background-color: #f0e76b;
-  border-color: #f0e76b;
+  /* float: right; */
+  background-color: #ce8ac5;
+  border-color: #ce8ac5;
   font-size: 1rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.5rem 0.5rem;
   transition: background-color 0.3s ease;
 }
 
-/* .btn-primary:hover {
-  background-color: #170a61;
-  border-color: #170a61;
-} */
-
-.preview {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  color: #888;
-  height: 6rem;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+.btn-primary:hover {
+  background-color: #c73371;
+  border-color: #c73371;
 }
 
 .full-content {
